@@ -2,7 +2,7 @@
 ## 介绍
   微信SDK For ThinkPHP 6.0+ 基于[overtrue/wechat](https://github.com/overtrue/wechat)
   easywechat SDK for ThinkPHP6.0
-  增加小程序云开发、微信支付服务商等接口
+  增加小程序云开发、微信支付服务商、第三方平台批量代云开发等接口
   
 ## 软件架构
 软件架构说明
@@ -62,7 +62,9 @@ $officialAccount = Facade::officialAccount('',$config); // 公众号
 
 1.  建议采用微信第三方平台方式进行微信相关功能开发，好处很多。
 
- 更多 SDK 的具体使用请参考：https://easywechat.com
+ 更多 SDK 的具体使用请参考：https://gitee.com/uctoo/uctoo/
+ 由于easywechat原SDK的http client未实现PUT方法，本SDK第三方平台批量代云开发部分使用http PUT方法的接口引入了 https://gitee.com/jaguarjack/catchAdmin 项目中的http client类，请开发者自行参考。
+ 
 
 ## 参考项目
 - [overtrue/laravel-wechat](https://raw.githubusercontent.com/overtrue/laravel-wechat)

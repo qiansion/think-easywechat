@@ -15,7 +15,7 @@
 namespace uctoo\ThinkEasyWeChat;
 
 use Psr\SimpleCache\CacheInterface;
-use think\Cache;
+use think\facade\Cache;
 
 class CacheBridge implements CacheInterface
 {

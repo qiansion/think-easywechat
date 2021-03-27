@@ -23,6 +23,18 @@ use Psr\Http\Message\ResponseInterface;
 class Client extends BaseClient
 {
     /**
+     * check mobile
+     *
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function checkmobile(bool $push_tmpl = null )
+    {
+        return $this->httpPostJson('tcb/checkmobile',['push_tmpl' => $push_tmpl]);
+    }
+
+    /**
      * Open cloud development
      *
      * @return array|Collection|object|ResponseInterface|string
@@ -52,7 +64,7 @@ class Client extends BaseClient
      *
      * @param string $env
      * @param string $alias
-     * @return array|Collection|object|ResponseInterface|string
+     * @return array|Collection|object|ResponseInterface|string 
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
