@@ -47,7 +47,7 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productBrand()
+    public function productBrandGet()
     {
         return $this->httpPostJson('product/brand/get');
     }
@@ -80,7 +80,7 @@ class Client extends BaseClient
      * product spu add
      *
      * @param array $spu_data
-     * @return array|Collection|object|ResponseInterface|string
+     * @return array|Collection|object|ResponseInterface|string   
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */

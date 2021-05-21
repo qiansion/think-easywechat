@@ -66,8 +66,9 @@ $officialAccount = Facade::officialAccount('',$config); // 公众号
  由于easywechat原SDK的http client未实现PUT方法，本SDK第三方平台批量代云开发部分使用http PUT方法的接口引入了 https://gitee.com/jaguarjack/catchAdmin 项目中的http client类，请开发者自行参考。
  
 
-## 参考项目
+## 参考资料
 - [overtrue/laravel-wechat](https://raw.githubusercontent.com/overtrue/laravel-wechat)
+- [小程序云开发文档](https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/Mini_Programs/cloudbase/cloudbase.html)
 
 ## 交流群
 QQ群：102324323(已满)，138048128，使用疑问，开发，贡献代码请加群。
