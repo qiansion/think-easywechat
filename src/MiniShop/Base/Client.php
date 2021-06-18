@@ -35,7 +35,7 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productCategory(int $f_cat_id = 0)
+    public function productCategoryGet(int $f_cat_id = 0)
     {
         return $this->httpPostJson('product/category/get', ['f_cat_id' => $f_cat_id]);
     }
@@ -80,7 +80,7 @@ class Client extends BaseClient
      * product spu add
      *
      * @param array $spu_data
-     * @return array|Collection|object|ResponseInterface|string   
+     * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -121,16 +121,20 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productSpuGet(int $product_id = 0, string $out_product_id = '',int $need_edit_spu = 0)
+    public function productSpuGet(array $body)
     {
         $param = [];
-        if( 0 != $product_id){
-            $param['product_id'] = $product_id;
+        if( isset($body['product_id'])){
+            $param['product_id'] = $body['product_id'];
         }
-        if( '' != $out_product_id){
-            $param['out_product_id'] = $out_product_id;
+        if( isset($body['out_product_id'])){
+            $param['out_product_id'] = $body['out_product_id'];
         }
-        $param['need_edit_spu'] = $need_edit_spu;
+        if( isset($body['need_edit_spu'])){
+            $param['need_edit_spu'] = $body['need_edit_spu'];
+        }else{
+            $param['need_edit_spu'] = 0;
+        }
 
         return $this->httpPostJson('product/spu/get',$param);
     }
@@ -146,14 +150,28 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productSpuGetlist(int $status = 0, int $page = 1,int $page_size = 10 ,int $need_edit_spu = 0)
+    public function productSpuGetlist(array $body)
     {
-        $param['status'] = $status;
-        $param['page'] = $page;
-        $param['page_size'] = $page_size;
-        $param['need_edit_spu'] = $need_edit_spu;
+        $param['status'] = 0;
+        $param['page'] = 1;
+        $param['page_size'] = 10;
+        $param['need_edit_spu'] = 0;
 
-        return $this->httpPostJson('product/spu/get_list',$param);
+        if( isset($body['status'])){
+            $param['status'] = $body['status'];
+        }
+        if( isset($body['page'])){
+            $param['page'] = $body['page'];
+        }
+        if( isset($body['page_size'])){
+            $param['page_size'] = $body['page_size'];
+        }
+        if( isset($body['need_edit_spu'])){
+            $param['need_edit_spu'] = $body['need_edit_spu'];
+        }
+
+        $res = $this->httpPostJson('product/spu/get_list',$param);
+        return $res;
     }
 
     /**
@@ -168,15 +186,30 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productSpuSearch(string $keyword = '',int $source = 1, int $page = 1,int $page_size = 10, int $status = 5 )
+    public function productSpuSearch(array $body)
     {
-        $param['keyword'] = $keyword;
-        $param['status'] = $status;
-        $param['page'] = $page;
-        $param['page_size'] = $page_size;
-        $param['source'] = $source;
+        $param['status'] = 5;
+        $param['page'] = 1;
+        $param['page_size'] = 10;
+        $param['source'] = 1;
 
-        return $this->httpPostJson('product/spu/search',$param);
+        if( isset($body['keyword'])){
+            $param['keyword'] = $body['keyword'];
+        }
+        if( isset($body['status'])){
+            $param['status'] = $body['status'];
+        }
+        if( isset($body['page'])){
+            $param['page'] = $body['page'];
+        }
+        if( isset($body['page_size'])){
+            $param['page_size'] = $body['page_size'];
+        }
+        if( isset($body['source'])){
+            $param['source'] = $body['source'];
+        }
+        $res = $this->httpPostJson('product/spu/search',$param);
+        return $res;
     }
 
     /**
@@ -202,14 +235,14 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productSpuListing(int $product_id = 0, string $out_product_id = '')
+    public function productSpuListing(array $body)
     {
         $param = [];
-        if( 0 != $product_id){
-            $param['product_id'] = $product_id;
+        if( isset($body['product_id'])){
+            $param['product_id'] = $body['product_id'];
         }
-        if( '' != $out_product_id){
-            $param['out_product_id'] = $out_product_id;
+        if( isset($body['out_product_id'])){
+            $param['out_product_id'] = $body['out_product_id'];
         }
 
         return $this->httpPostJson('product/spu/listing',$param);
@@ -225,14 +258,14 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function productSpuDelisting(int $product_id = 0, string $out_product_id = '')
+    public function productSpuDelisting(array $body)
     {
         $param = [];
-        if( 0 != $product_id){
-            $param['product_id'] = $product_id;
+        if( isset($body['product_id'])){
+            $param['product_id'] = $body['product_id'];
         }
-        if( '' != $out_product_id){
-            $param['out_product_id'] = $out_product_id;
+        if( isset($body['out_product_id'])){
+            $param['out_product_id'] = $body['out_product_id'];
         }
 
         return $this->httpPostJson('product/spu/delisting',$param);
